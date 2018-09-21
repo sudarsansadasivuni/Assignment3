@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Japan_population</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="basictheme.css">
+	<style> /* set the CSS */
+	.line {
+		fill: none;
+		stroke: steelblue;
+		stroke-width: 3px;
+	}
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="d3.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script>
+		// set the dimensions and margins of the graph
+		var margin = {top: 40, right: 20, bottom: 30, left: 150},
+		    width = 960 - margin.left - margin.right,
+		    height = 500 - margin.top - margin.bottom;
+		
+		// parse the date / time
+		var parseTime = d3.timeParse("%Y");
+		
+		// set the ranges
+		var x = d3.scaleTime().range([0, width]);
+		var y = d3.scaleLinear().range([height, 0]);
+			
+		// define the line
+		var valueline = d3.line()
+		    .x(function(d) { return x(d.date); })
+		    .y(function(d) { return y(d.count); });
+			  
+		// append the svg obgect to the body of the page
+		// appends a 'group' element to 'svg'
+		// moves the 'group' element to the top left margin
+		var svg = d3.select("body").append("svg")
+		    .attr("width", 1000 + margin.left + margin.right)
+		    .attr("height", height + margin.top + margin.bottom)
+			.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			
+		function draw(data) {
+			  
+			var data = data["children"][0]["children"][0]["counts"];
+			 
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "red").attr("d", valueline);
+
+			// Add the X Axis
+			svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));
+			
+			svg.append("text").attr("transform", "translate(793,185)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "red").text("Akita-ken");
+			// Add the Y Axis
+			/*svg.append("g").call(d3.axisLeft(y));*/
+		}
+			
+		function draw1(data) {
+			  
+			var data = data["children"][0]["children"][1]["counts"];
+			 
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "green").attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,100)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "green").text("Aomori-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+			
+		function draw2(data) {
+			  
+			var data = data["children"][0]["children"][2]["counts"];
+			 
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "#4d2600").attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,87)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#4d2600").text("Fukui-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+			
+		function draw3(data) {
+			  
+			var data = data["children"][0]["children"][3]["counts"];
+			 
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "cyan").attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793, 19)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "cyan").text("Gunma-ken");
+			
+			// Add the Y Axis
+			/*svg.append("g").call(d3.axisLeft(y));*/
+		}
+			
+		function draw4(data) {
+			  
+			var data = data["children"][0]["children"][4]["counts"];
+			 
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "blue").attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+			
+			// Add the Y Axis
+			svg.append("g").call(d3.axisLeft(y));
+
+			svg.append("text").attr("transform", "translate(793, 6)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "blue").text("Ibaraki-ken");
+		}
+			
+		function draw5(data) {
+			  
+			var data = data["children"][1]["children"][0]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "black").attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,70)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "black").text("Ehime-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw6(data) {
+			  
+			var data = data["children"][1]["children"][1]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", "orange").attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,47)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "orange").text("Kagawa-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+		
+		function draw7(data) {
+			  
+			var data = data["children"][1]["children"][2]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#f48c42').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,240)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#f48c42").text("Kochi-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw8(data) {
+			  
+			var data = data["children"][1]["children"][3]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#52bbc7').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,200)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#52bbc7").text("Tokushima-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw9(data) {
+			  
+			var data = data["children"][2]["children"][0]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#800000').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,120)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#800000").text("Kagoshima-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw10(data) {
+			  
+			var data = data["children"][2]["children"][1]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#669999').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,32)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#669999").text("Kumamoto-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw11(data) {
+			  
+			var data = data["children"][2]["children"][2]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#00aaff').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(888,60)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#00aaff").text("Miyazaki-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw12(data) {
+			  
+			var data = data["children"][2]["children"][3]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#ff4d4d').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,145)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#ff4d4d").text("Nagasaki-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw13(data) {
+			  
+			var data = data["children"][2]["children"][4]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#6600cc').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(877,79)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#6600cc").text("Oita-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		function draw14(data) {
+			  
+			var data = data["children"][2]["children"][5]["counts"];
+			// format the data
+			data.forEach(function(d) {
+			   	d.date = parseTime(parseInt(d.date));
+			   	d.count = +d.count;
+			});
+			  		 
+			// Scale the range of the data
+			x.domain(d3.extent(data, function(d) { return d.date; }));
+			y.domain([600000, d3.max(data, function(d) { return d.count })]);
+			  
+			// Add the valueline path.
+			svg.append("path").data([data]).attr("class", "line").style("stroke", '#993366').attr("d", valueline);
+
+			// Add the X Axis
+			/*svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));*/
+
+			svg.append("text").attr("transform", "translate(793,162)").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "#993366").text("Saga-ken");
+			
+			// Add the Y Axis
+			//svg.append("g").call(d3.axisLeft(y));
+		}
+
+		// Get the data
+		d3.json("japan_population.json", function(error, data) {
+			  	
+			if (error) throw error;
+			  
+			// trigger render
+			draw(data);
+			draw1(data);
+			draw2(data);
+			draw3(data);
+			draw4(data);
+			draw5(data);
+			draw6(data);
+			draw7(data);
+			draw8(data);
+			draw9(data);
+			draw10(data);
+			draw11(data);
+			draw12(data);
+			draw13(data);
+			draw14(data);
+			
+		});
+	</script>
+</body>
+</html>
